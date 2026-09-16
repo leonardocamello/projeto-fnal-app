@@ -84,8 +84,8 @@
 | Item | Definição do grupo |
 |---|---|
 | Nome exibido (`strings.xml`) | Agro Play |
-| Cor principal (hex, em `Color.kt`) | `#2E7D32` |
-| Ideia do ícone (512×512) | Folha verde combinada com um celeiro e um símbolo de controle de estoque |
+| Cor principal (hex, em `Color.kt`) | `#73e841` |
+| Ideia do ícone (512×512) | Um celeiro com uma lista de checagem |
 | `applicationId` | `br.edu.ifpe.agroplay` |
 | Versão inicial | `1.0` (versionCode `1`) |
 
