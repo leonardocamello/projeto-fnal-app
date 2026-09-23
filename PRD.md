@@ -115,3 +115,79 @@ Após a criação, salvar as imagens em `docs/telas/` e incluir seus nomes no re
 Não há imagens de telas confirmadas no canvas.
 
 ---
+## 7. Dados
+
+**Persistência:** Room, em banco local no dispositivo. Modelo inicial proposto para atender F1 a F3; os nomes finais dos campos podem ser ajustados pelo grupo antes da implementação.
+
+| Entidade    | Campo              | Tipo   | Regra                                         |
+| ----------- | ------------------ | ------ | --------------------------------------------- |
+| ItemEstoque | id                 | Long   | Chave primária autogerada.                    |
+| ItemEstoque | nome               | String | Obrigatório; não aceitar apenas espaços.      |
+| ItemEstoque | quantidade         | Int    | Obrigatório; inteiro igual ou maior que zero. |
+| ItemEstoque | localArmazenamento | String | Obrigatório; não aceitar apenas espaços.      |
+
+**Operações necessárias:** inserir, listar, atualizar e excluir.
+
+Cada alteração persistida deve aparecer na lista após o salvamento e continuar disponível ao reabrir o app.
+
+Não há API, Retrofit nem chave de acesso nesta versão.
+
+Dados da funcionalidade opcional de demandas e limite de estoque: definir o modelo apenas se RF06 entrar na versão 1.0.
+
+## 8. Arquitetura e tecnologias
+
+| Item                  | Escolha                                                                  |
+| --------------------- | ------------------------------------------------------------------------ |
+| Linguagem e interface | Kotlin, Jetpack Compose e Material 3                                     |
+| Navegação             | Navigation Compose                                                       |
+| Arquitetura           | MVVM com ViewModel e repositório                                         |
+| Persistência          | Room, com entidade, DAO e banco local                                    |
+| Trabalho assíncrono   | Kotlin Coroutines                                                        |
+| Rede                  | Não utilizada nesta versão                                               |
+| applicationId         | `br.edu.ifpe.agroplay`                                                   |
+| minSdk e targetSdk    | A definir pelo grupo conforme os aparelhos de teste e o projeto Android. |
+
+**Organização prevista:**
+
+* `ui/` para telas e estado de interface;
+* `data/` para entidade, DAO, banco e repositório;
+* `MainActivity.kt` como ponto de entrada.
+
+A estrutura final deve manter responsabilidades separadas conforme MVVM.
+
+## 9. Tratamento de erros
+
+Validações de formulário mostram mensagens de campo. Falhas de leitura e gravação do Room são capturadas para manter a tela utilizável.
+
+| Situação                                   | Comportamento do app                                                         | Mensagem ao usuário                                                         |
+| ------------------------------------------ | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Lista vazia                                | Exibe estado vazio e botão para cadastrar; não é erro técnico.               | Nenhum item cadastrado. Adicione o primeiro produto ou insumo.              |
+| Nome ou local em branco                    | Impede o salvamento e mantém os dados digitados.                             | Preencha o nome e o local de armazenamento.                                 |
+| Quantidade inválida                        | Impede o salvamento e mantém os demais campos.                               | Informe uma quantidade inteira igual ou maior que zero.                     |
+| Falha ao salvar, editar ou excluir no Room | Mantém a tela e os dados editados, sem afirmar que a operação foi concluída. | Não foi possível concluir a operação. Verifique os dados e tente novamente. |
+| Falha ao consultar o Room                  | Mantém a tela e oferece nova tentativa.                                      | Não foi possível carregar os itens. Tente novamente.                        |
+
+Falhas de internet ou de API não se aplicam ao MVP local.
+
+## 10. Identidade visual e publicação
+
+| Item            | Definição                                                 | Arquivo previsto     |
+| --------------- | --------------------------------------------------------- | -------------------- |
+| Nome exibido    | Agro Play                                                 | `strings.xml`        |
+| Cor principal   | `#73E841`                                                 | `Color.kt`           |
+| Cor secundária  | A definir pelo grupo                                      | `Color.kt`           |
+| Ícone 512 × 512 | Celeiro com lista de checagem; arte ainda será produzida. | `loja/icone-512.png` |
+| applicationId   | `br.edu.ifpe.agroplay`                                    | `build.gradle.kts`   |
+| Versão inicial  | `versionName 1.0; versionCode 1`                          | `build.gradle.kts`   |
+
+### Material previsto para a loja e para a entrega
+
+| Artefato                            | Conteúdo previsto ou situação                                                                                                 |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Título (até 30 caracteres)          | Agro Play                                                                                                                     |
+| Descrição curta (até 80 caracteres) | Controle produtos, quantidades e locais de armazenamento da fazenda.                                                          |
+| Descrição completa                  | A redigir em `loja/descricao.md` após validar a implementação.                                                                |
+| Imagem de destaque 1024 × 500       | A produzir em `loja/destaque-1024x500.png`.                                                                                   |
+| Capturas de tela (mínimo 2)         | A produzir em `loja/screenshots/` com telas reais.                                                                            |
+| Esboço de privacidade               | A documentar em `loja/privacidade.md`. O MVP prevê banco local e não prevê nuvem; confirmar práticas reais antes de publicar. |
+| AAB de release                      | A gerar em `loja/app-release.aab` após os testes.                                                                             |
