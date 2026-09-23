@@ -191,3 +191,77 @@ Falhas de internet ou de API não se aplicam ao MVP local.
 | Capturas de tela (mínimo 2)         | A produzir em `loja/screenshots/` com telas reais.                                                                            |
 | Esboço de privacidade               | A documentar em `loja/privacidade.md`. O MVP prevê banco local e não prevê nuvem; confirmar práticas reais antes de publicar. |
 | AAB de release                      | A gerar em `loja/app-release.aab` após os testes.                                                                             |
+
+
+## 11. Plano de testes
+
+| ID | Cenário e passos                                                                                | Resultado esperado                                                          | Situação |
+| -- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | -------- |
+| T1 | Instalar e abrir sem dados cadastrados.                                                         | Tela principal abre e explica o estado vazio.                               | Pendente |
+| T2 | Cadastrar item com nome, quantidade e local; fechar e reabrir o app.                            | Item aparece na lista e continua salvo.                                     | Pendente |
+| T3 | Editar nome, quantidade e local; depois excluir com confirmação.                                | Mudanças aparecem na lista; exclusão persiste.                              | Pendente |
+| T4 | Tentar salvar com nome ou local vazio, quantidade negativa ou texto não numérico.               | Mensagem clara; app permanece aberto e preserva os campos.                  | Pendente |
+| T5 | Simular falha de leitura ou gravação do banco durante revisão técnica.                          | Mensagem de erro; nenhuma confirmação falsa e nenhum fechamento inesperado. | Pendente |
+| T6 | Duas pessoas de fora do grupo instalam o APK e completam o cadastro e a atualização de um item. | As duas concluem as ações; dificuldades são registradas.                    | Pendente |
+
+**Observação:** Aparelhos e versões de Android usados devem ser registrados após os testes em pelo menos dois aparelhos. A pessoa indicada no canvas é um possível testador; nenhum teste externo foi confirmado.
+
+---
+
+## 12. Cronograma
+
+| Marco                                 | Prazo | Responsáveis                      | Situação em 23/09/2026                            |
+| ------------------------------------- | ----- | --------------------------------- | ------------------------------------------------- |
+| M1 — Canvas e repositório             | 16/09 | Grupo                             | Canvas fornecido; commit no main a confirmar.     |
+| M2 — PRD aprovado e telas rascunhadas | 30/09 | Grupo                             | PRD em revisão; rascunhos e aprovação pendentes.  |
+| M3 — Funcionalidade base              | 21/10 | Leonardo e Raymison               | Planejado: lista, uma ação e tratamento de falha. |
+| M4 — Dados completos com Room         | 11/11 | Raymison, com integração do grupo | Planejado: operações de dados e erros tratados.   |
+| M5 — Identidade e APK testado         | 25/11 | Josue, com testes do grupo        | Planejado: ícone, cores e duas pessoas externas.  |
+| M6 — AAB, loja e README               | 02/12 | Grupo                             | Planejado: pasta loja/ e README completo.         |
+| Entrega e apresentação                | 10/12 | Grupo                             | Planejado: tag v1.0 no repositório.               |
+
+---
+
+## 13. Riscos
+
+| Risco                                            | Impacto                                                     | Plano B                                                                                              |
+| ------------------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Erros na integração com Room                     | Atraso no controle do estoque.                              | Testar operações simples; usar dados em memória durante os ajustes e concluir Room antes da entrega. |
+| Tempo insuficiente para todas as funcionalidades | Demandas e alerta de estoque baixo podem ficar incompletos. | Priorizar cadastro e edição, quantidades e locais (F1 a F3); adiar F4.                               |
+
+---
+
+## 14. Orientação da implementação com IA
+
+O grupo revisará, compreenderá e testará as sugestões da IA antes de aceitá-las. O uso será registrado em `docs/USO_DE_IA.md`.
+
+### Regras propostas para AGENTS.md
+
+* Explicar cada alteração e indicar os arquivos modificados.
+* Manter MVVM, usar nomes claros e evitar código desnecessário.
+* Não remover funcionalidades existentes sem autorização do grupo.
+
+### Combinados
+
+Cada integrante explica sua parte, todos revisam o código e participam dos testes, e ninguém envia dados sensíveis à IA.
+
+### Responsabilidades
+
+| Parte                                  | Responsável principal |
+| -------------------------------------- | --------------------- |
+| Interface, componentes e navegação     | Leonardo              |
+| Room, entidade, DAO e repositório      | Raymison              |
+| Cores, ícone e padronização visual     | Josue                 |
+| Documentação, build, APK, AAB e testes | Os três integrantes   |
+
+Registrar os recursos de IA usados e as decisões do grupo em `docs/USO_DE_IA.md` ao longo do projeto.
+
+---
+
+## 15. Histórico de versões deste documento
+
+**Versão 1.0 • 23/09/2026**
+
+Grupo B3 Pizza — Preenchimento inicial com base no canvas de 09/09/2026.
+
+**Status:** Revisão e validação pendentes.
