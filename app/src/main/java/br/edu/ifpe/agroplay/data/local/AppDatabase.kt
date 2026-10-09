@@ -1,0 +1,25 @@
+package br.edu.ifpe.agroplay.data.local
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+
+@Database(entities = [ItemEstoque::class, Fazenda::class], version = 2, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun itemEstoqueDao(): ItemEstoqueDao
+
+    companion object {
+        @Volatile
+        private var Instance: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase {
+            return Instance ?: synchronized(this) {
+                Room.databaseBuilder(context, AppDatabase::class.java, "agroplay_database")
+                    .fallbackToDestructiveMigration()
+                    .build()
+                    .also { Instance = it }
+            }
+        }
+    }
+}

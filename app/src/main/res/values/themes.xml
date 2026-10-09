@@ -1,0 +1,4 @@
+<resources>
+    <style name="Theme.Agroplay" parent="android:Theme.Material.Light.NoActionBar">
+    </style>
+</resources>
