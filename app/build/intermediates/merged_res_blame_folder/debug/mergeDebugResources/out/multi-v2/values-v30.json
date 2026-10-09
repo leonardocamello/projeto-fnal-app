@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "br.edu.ifpe.agroplay.app-mergeDebugResources-55:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\jvfra\\.gradle\\caches\\9.0.0\\transforms\\1a29923f295e6464e04c7169829b9afb\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}
